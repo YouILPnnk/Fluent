@@ -1,10 +1,12 @@
+_G.AutoFarm = false
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Fluent " .. Fluent.Version,
-    SubTitle = "by dawid",
+    Title = "ShibaHub :" .. Fluent.Version,
+    SubTitle = "Build A Boat",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -14,7 +16,7 @@ local Window = Fluent:CreateWindow({
 
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "https://lucide.dev/icons/chart-gantt" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
@@ -23,21 +25,21 @@ local Options = Fluent.Options
 do
     Fluent:Notify({
         Title = "Notification",
-        Content = "This is a notification",
+        Content = "ShibaHub Load.",
         SubContent = "SubContent", -- Optional
-        Duration = 5 -- Set to nil to make the notification not disappear
+        Duration = 3 -- Set to nil to make the notification not disappear
     })
 
 
 
-    Tabs.Main:AddParagraph({
+    --[[Tabs.Main:AddParagraph({
         Title = "Paragraph",
         Content = "This is a paragraph.\nSecond line!"
-    })
+    })]]--
 
 
 
-    Tabs.Main:AddButton({
+    --[[Tabs.Main:AddButton({
         Title = "Button",
         Description = "Very important button",
         Callback = function()
@@ -60,21 +62,23 @@ do
                 }
             })
         end
-    })
+    })]]--
 
 
 
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false })
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Auto Farm", Default = false })
 
     Toggle:OnChanged(function()
         print("Toggle changed:", Options.MyToggle.Value)
+        _G.AutoFarm = true
+        print(tostring(_G.AutoFarm.Value))
     end)
 
     Options.MyToggle:SetValue(false)
 
 
     
-    local Slider = Tabs.Main:AddSlider("Slider", {
+    --[[local Slider = Tabs.Main:AddSlider("Slider", {
         Title = "Slider",
         Description = "This is a slider",
         Default = 2,
@@ -90,7 +94,7 @@ do
         print("Slider changed:", Value)
     end)
 
-    Slider:SetValue(3)
+    Slider:SetValue(3)]]--
 
 
 
